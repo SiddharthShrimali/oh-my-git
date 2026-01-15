@@ -29,7 +29,6 @@ func _ready():
 		get_tree().change_scene("res://scenes/sandbox.tscn")
 		return
 	
-	# --- CRITICAL FIX: MANUALLY CONNECT SIGNALS ---
 	# We connect the terminal's completion signal to our update function.
 	if terminal.has_signal("command_entered"):
 		if not terminal.is_connected("command_entered", self, "update_repos"):
@@ -190,7 +189,6 @@ func show_win_status(win_states):
 				badge.active = true
 				badge.sparkling = true
 
-# --- CRITICAL FIX: ACCEPT ARGUMENT ---
 # We added "_ignore=null" so this function can accept the signal
 # from the terminal (which sends the command text) without crashing
 # or being ignored by Godot.
