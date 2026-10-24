@@ -359,6 +359,15 @@ func send_command(command):
 	game.save_state()
 	history_position = game.state["history"].size()
 	
+	# `clear` (and `cls`) wipes the terminal output like in a real terminal.
+	# It is handled here because there is no real terminal behind the output.
+	if command.strip_edges() in ["clear", "cls"]:
+		clear()
+		input.text = ""
+		completions.hide()
+		input.grab_focus()
+		return
+	
 	input.editable = false
 	completions.hide()
 
